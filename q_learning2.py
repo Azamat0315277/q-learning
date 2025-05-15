@@ -5,30 +5,31 @@ import matplotlib.pyplot as plt
 import pickle
 from matplotlib import style
 import time
+from typing import Dict, List, Tuple, Optional, Union
 
 style.use("ggplot")
 
-SIZE = 20
+SIZE: int = 20
 
-HM_EPISODES = 25000
-MOVE_PENALTY = 1
-ENEMY_PENALTY = 300
-FOOD_REWARD = 25
-epsilon = 0.9
-EPS_DECAY = 0.9998  # Every episode will be epsilon*EPS_DECAY
-SHOW_EVERY = 3000  # how often to play through env visually.
+HM_EPISODES: int = 25000
+MOVE_PENALTY: int = 1
+ENEMY_PENALTY: int = 300
+FOOD_REWARD: int = 25
+epsilon: float = 0.9
+EPS_DECAY: float = 0.9998  # Every episode will be epsilon*EPS_DECAY
+SHOW_EVERY: int = 3000  # how often to play through env visually.
 
-start_q_table = None # None or Filename
+start_q_table: Optional[str] = None # None or Filename
 
-LEARNING_RATE = 0.1
-DISCOUNT = 0.95
+LEARNING_RATE: float = 0.1
+DISCOUNT: float = 0.95
 
-PLAYER_N = 1  # player key in dict
-FOOD_N = 2  # food key in dict
-ENEMY_N = 3  # enemy key in dict
+PLAYER_N: int = 1  # player key in dict
+FOOD_N: int = 2  # food key in dict
+ENEMY_N: int = 3  # enemy key in dict
 
 # the dict!
-d = {1: (255, 175, 0),
+d: Dict[int, Tuple[int, int, int]] = {1: (255, 175, 0),
      2: (0, 255, 0),
      3: (0, 0, 255)}
 

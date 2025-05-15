@@ -1,26 +1,27 @@
 import gymnasium as gym
 import numpy as np
 from gymnasium.spaces import Box, Discrete
+from typing import List, Any, Tuple
 
-env = gym.make("MountainCar-v0", render_mode="human")
+env: gym.Env = gym.make("MountainCar-v0", render_mode="human")
 env.reset()
 
-LEARNING_RATE = 0.1
-DISCOUNT = 0.95
-EPISODES = 25000
-SHOW_EVERY = 2000
+LEARNING_RATE: float = 0.1
+DISCOUNT: float = 0.95
+EPISODES: int = 25000
+SHOW_EVERY: int = 2000
 
-DISCRETE_OS_SIZE = [20] * 2  # MountainCar has 2 observation dimensions
+DISCRETE_OS_SIZE: List[int] = [20] * 2  # MountainCar has 2 observation dimensions
 obs_space: Box = env.observation_space  # type: ignore
 action_space: Discrete = env.action_space  # type: ignore
-discrete_os_win_size = (obs_space.high - obs_space.low) / DISCRETE_OS_SIZE
-size_q_table = DISCRETE_OS_SIZE + [action_space.n]
-q_table = np.random.uniform(low=-2, high=0, size=size_q_table)
+discrete_os_win_size: np.ndarray = (obs_space.high - obs_space.low) / DISCRETE_OS_SIZE
+size_q_table: List[int] = DISCRETE_OS_SIZE + [action_space.n]
+q_table: np.ndarray = np.random.uniform(low=-2, high=0, size=size_q_table)
 
-epsilon = 0.5  # Starting with balanced exploration/exploitation
-START_EPSILON_DECAYING = 1
-END_EPSILON_DECAYING = EPISODES // 2
-epsilon_decay_value = epsilon / (END_EPSILON_DECAYING - START_EPSILON_DECAYING)
+epsilon: float = 0.5  # Starting with balanced exploration/exploitation
+START_EPSILON_DECAYING: int = 1
+END_EPSILON_DECAYING: int = EPISODES // 2
+epsilon_decay_value: float = epsilon / (END_EPSILON_DECAYING - START_EPSILON_DECAYING)
 
 
 def get_discrete_state(state):
